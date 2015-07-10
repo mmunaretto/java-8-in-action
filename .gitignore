@@ -1,4 +1,4 @@
 # Compiled source #
 ###################
-*.class
+.idea/
 out/
