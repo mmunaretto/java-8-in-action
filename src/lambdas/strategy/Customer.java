@@ -3,7 +3,7 @@ package lambdas.strategy;
 import java.util.ArrayList;
 import java.util.List;
 
-class Customer {
+public class Customer {
 
 	private List<Double> drinks;
 	private BillingStrategy strategy;

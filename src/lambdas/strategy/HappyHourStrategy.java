@@ -1,7 +1,7 @@
 package lambdas.strategy;
 
 // Strategy for Happy hour (50% discount)
-class HappyHourStrategy implements BillingStrategy {
+public class HappyHourStrategy implements BillingStrategy {
 
 	@Override
 	public double getActPrice(double rawPrice) {
