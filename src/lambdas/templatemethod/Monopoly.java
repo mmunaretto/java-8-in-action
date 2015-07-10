@@ -1,9 +1,6 @@
 package lambdas.templatemethod;
 
-/**
- * Created by manuela on 09/07/15.
- */
-class Monopoly extends Game {
+public class Monopoly extends Game {
 
     /* Implementation of necessary concrete methods */
     @Override

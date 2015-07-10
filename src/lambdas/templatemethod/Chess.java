@@ -1,9 +1,6 @@
 package lambdas.templatemethod;
 
-/**
- * Created by manuela on 09/07/15.
- */
-class Chess extends Game {
+public class Chess extends Game {
 
     /* Implementation of necessary concrete methods */
     @Override
