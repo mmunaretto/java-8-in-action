@@ -5,8 +5,7 @@ public class Monopoly extends Game {
     /* Implementation of necessary concrete methods */
     @Override
     public void initializeGame() {
-        // Initialize players
-        // Initialize money
+        System.out.println("Monopoly initialized");
     }
 
     @Override
