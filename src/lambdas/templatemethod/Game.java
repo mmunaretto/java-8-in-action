@@ -1,5 +1,8 @@
 package lambdas.templatemethod;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * An abstract class that is common to several games in
  * which players play against the others, but only one is
@@ -35,9 +38,21 @@ abstract class Game {
     }
 
     public static class Factory {
+        private Map<Type, Game> typeGameMap = new HashMap<Type, Game>() {
+            {
+                put(Type.CHESS, new Chess());
+                put(Game.Type.MONOPOLY, new Monopoly());
+            }
+        };
+
         public Game create(Type gameType) {
-            return null;
+            return typeGameMap.get(gameType);
         }
+    }
+
+    public static void main(String[] args) {
+        Game game = new Game.Factory().create(Type.CHESS);
+        game.playOneGame(2);
     }
 }
 
