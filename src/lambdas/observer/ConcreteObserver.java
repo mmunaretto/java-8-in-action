@@ -1,6 +1,6 @@
 package lambdas.observer;
 
-class ConcreteObserver extends Observer {
+class ConcreteObserver implements Observer {
 	private String name;
 	private String observerState;
 	private ConcreteSubject subject;
@@ -8,7 +8,6 @@ class ConcreteObserver extends Observer {
 	public ConcreteObserver(ConcreteSubject subject, String name) {
 		this.subject = subject;
 		this.name = name;
-		// subject.attach(this);
 	}
 
 	public void update() {
