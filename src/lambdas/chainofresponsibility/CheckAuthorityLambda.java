@@ -10,46 +10,37 @@ public class CheckAuthorityLambda {
 	public static void main(String[] args) {
 		UnaryOperator<PurchaseRequest> managerPower =
 				(PurchaseRequest request) -> {
-					if (request.getAmount() < 10 * PurchasePower.BASE) {
-						System.out.println("Manager will approve $" + request.getAmount());
-					}
-					return request;
+					return process(request, 0, 5000, "Manager");
 				};
 
 		UnaryOperator<PurchaseRequest> directorPower =
 				(PurchaseRequest request) -> {
-					if (request.getAmount() >= 10 * PurchasePower.BASE && request.getAmount() < 20 * PurchasePower.BASE) {
-						System.out.println("Director will approve $" + request.getAmount());
-					}
-					return request;
+					return process(request, 5000, 10000, "Director");
 				};
 
 		UnaryOperator<PurchaseRequest> vicePresidentPower =
 				(PurchaseRequest request) -> {
-					if (request.getAmount() >= 20 * PurchasePower.BASE && request.getAmount() < 40 * PurchasePower.BASE) {
-						System.out.println("Vice President will approve $" + request.getAmount());
-					}
-					return request;
+					return process(request, 10000, 20000, "Vice President");
 				};
 
 		UnaryOperator<PurchaseRequest> presidentPower =
 				(PurchaseRequest request) -> {
-					if (request.getAmount() >= 40 * PurchasePower.BASE && request.getAmount() < 60 * PurchasePower.BASE) {
-						System.out.println("Vice President will approve $" + request.getAmount());
-					}
-					return request;
+					return process(request, 20000, 30000, "President");
 				};
 
 		UnaryOperator<PurchaseRequest> boardMeetingPower =
 				(PurchaseRequest request) -> {
-					if (request.getAmount() >= 60 * PurchasePower.BASE) {
+					if (request.getAmount() >= 30000) {
 						System.out.println("Your request for $" + request.getAmount() + " needs a board meeting!");
 					}
 					return request;
 				};
 
-		Function<PurchaseRequest, PurchaseRequest> pipeline = managerPower.andThen(directorPower).andThen(vicePresidentPower)
-				.andThen(presidentPower).andThen(boardMeetingPower);
+		Function<PurchaseRequest, PurchaseRequest> pipeline = managerPower
+				.andThen(directorPower)
+				.andThen(vicePresidentPower)
+				.andThen(presidentPower)
+				.andThen(boardMeetingPower);
 
 		try {
 			while (true) {
@@ -61,6 +52,15 @@ public class CheckAuthorityLambda {
 		} catch (Exception e) {
 			System.exit(1);
 		}
+	}
+
+	private static PurchaseRequest process(PurchaseRequest request, double lowerBound, double upperBound, String office) {
+		double amount = request.getAmount();
+		if (amount >= lowerBound && amount < upperBound) {
+			String message = String.format("%s will approve $%s", office, amount);
+			System.out.println(message);
+		}
+		return request;
 	}
 
 }
