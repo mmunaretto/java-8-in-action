@@ -57,8 +57,7 @@ public class CheckAuthorityLambda {
 	private static PurchaseRequest process(PurchaseRequest request, double lowerBound, double upperBound, String office) {
 		double amount = request.getAmount();
 		if (amount >= lowerBound && amount < upperBound) {
-			String message = String.format("%s will approve $%s", office, amount);
-			System.out.println(message);
+			System.out.printf("%s will approve $%s.\n", office, amount);
 		}
 		return request;
 	}
