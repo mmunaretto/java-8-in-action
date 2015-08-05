@@ -4,6 +4,8 @@ import static java.lang.Math.PI;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
+import java.util.function.BiFunction;
+
 public class Complex {
 	public static Complex fromCartesianFactory(double real, double imaginary) {
 		return new Complex(real, imaginary);
@@ -18,6 +20,9 @@ public class Complex {
 	}
 
 	public static void main(String[] args) {
-		Complex product = Complex.fromPolarFactory(1, PI);
+		Complex productWithFactory = Complex.fromPolarFactory(1, PI);
 		// do something
+		BiFunction<Integer, Double, Complex> constructorWithLambda = Complex::new;
+		Complex productWithLambda = constructorWithLambda.apply(1, PI);
+	}
 }
